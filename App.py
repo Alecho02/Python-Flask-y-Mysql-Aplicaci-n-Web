@@ -27,10 +27,10 @@ def Index():
 def add_contact():
     if request.method == 'POST':
         fullname = request.form['fullname']
-        phone = request.form['phone']
         email = request.form['email']
+        phone = request.form['phone']        
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO contacts (fullname, phone, email) VALUES (%s,%s,%s)", (fullname, phone, email))
+        cur.execute("INSERT INTO contacts (fullname, phone, email) VALUES (%s,%s,%s)", (fullname, email, phone))
         mysql.connection.commit()
         flash('Contact Added successfully')
         return redirect(url_for('Index'))
@@ -73,3 +73,5 @@ def delete_contact(id):
 # starting the app
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
+
+    
